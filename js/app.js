@@ -328,7 +328,7 @@ function modificarPedido(id) {
 }
 
 
-// === FUNCIONES AUXILIARES (se mantienen igual) ===
+// === FUNCIONES AUXILIARES ===
 function agregarArticuloAlPedido() {
     const articulo = JSON.parse(document.getElementById("articuloSelect").value);
     const cantidad = parseInt(document.getElementById("cantidadArticulo").value);
@@ -352,13 +352,13 @@ function actualizarListaArticulosPedido() {
     const lista = document.getElementById("listaArticulosPedido");
     lista.innerHTML = "";
 
-    // ✅ Si no hay artículos, mostramos mensaje y salimos
+   
     if (pedidoActual.items.length === 0) {
         const li = document.createElement("li");
         li.className = "list-group-item text-center text-muted";
         li.textContent = "No hay artículos en el pedido.";
         lista.appendChild(li);
-        return;  // ⚠️ Importante cortar la función acá
+        return;  
     }
 
     let total = 0;
@@ -451,7 +451,7 @@ function confirmarPedido(id) {
 
             Promise.all(actualizaciones)
                 .then(() => {
-                    eliminarPedidoDirecto(id); // Elimina el pedido confirmado
+                    eliminarPedidoDirecto(id); 
                     listarArticulos();   // refresca la tabla de artículos (stock actualizado)
                 })
                 .catch(() => {
