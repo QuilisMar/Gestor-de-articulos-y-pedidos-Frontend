@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestión de Pedidos y Artículos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div class="container mt-4">
+    <h1 class="text-center mb-4">Gestión de Artículos</h1>
+
+    <form id="form-articulo" class="mb-4">
+        <input type="hidden" id="idArticulo">
+        <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre del Artículo</label>
+            <input type="text" class="form-control" id="nombre" required>
+        </div>
+        <div class="mb-3">
+            <label for="precio" class="form-label">Precio</label>
+            <input type="number" class="form-control" id="precio" required>
+        </div>
+        <div class="mb-3">
+            <label for="stock" class="form-label">Stock</label>
+            <input type="number" class="form-control" id="stock" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+        <button type="button" class="btn btn-secondary" id="cancelar">Cancelar</button>
+    </form>
+    
+    <div class="mb-4 d-flex gap-2">
+        <button id="btnAgregarPedido" class="btn btn-primary">Agregar Pedido</button>
+        <button id="btnMostrarPedidos" class="btn btn-secondary">Mostrar Pedidos</button>
+    </div>
+
+        <!-- Sección de Registrar Pedido (oculta al inicio) -->
+    <div id="seccionPedido" style="display: none;" class="mt-4">
+        <h2>Registrar Pedido</h2>
+        <form id="form-pedido" class="mb-4">
+            <div class="mb-3">
+                <label for="nombreCliente" class="form-label">Nombre del Cliente</label>
+                <input type="text" class="form-control" id="nombreCliente" required>
+            </div>
+            <div class="mb-3">
+                <label for="dniCliente" class="form-label">DNI del Cliente</label>
+                <input type="text" class="form-control" id="dniCliente" required>
+            </div>
+
+            <h4>Agregar Artículos al Pedido</h4>
+            <div class="mb-3">
+                <label for="articuloSelect" class="form-label">Seleccionar Artículo</label>
+                <select id="articuloSelect" class="form-select"></select>
+            </div>
+            <div class="mb-3">
+                <label for="cantidadArticulo" class="form-label">Cantidad</label>
+                <input type="number" class="form-control" id="cantidadArticulo" >
+            </div>
+            <button type="button" id="btnAgregarArticulo" class="btn btn-success">Agregar Artículo</button>
+
+            <h5 class="mt-4">Artículos en el Pedido:</h5>
+            <ul id="listaArticulosPedido" class="list-group mb-4"></ul>
+
+            <button type="submit" class="btn btn-primary">Finalizar Pedido</button>
+            <button type="button" class="btn btn-secondary" id="cancelarPedido">Cancelar</button>
+
+        </form>
+    </div>
+
+    <!-- Sección de Pedidos Registrados (oculta al inicio) -->
+    <div id="seccionMostrarPedidos" style="display: none;" class="mt-4">
+        <h2>Pedidos Registrados</h2>
+        <table class="table table-bordered table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th>ID Pedido</th>
+                    <th>Cliente</th>
+                    <th>DNI</th>
+                    <th>Total</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="tabla-pedidos"></tbody>
+        </table>
+    </div>
+
+
+
+
+    <div class="notification" id="notification"></div>
+
+        <table class="table table-bordered table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                    <th>Stock</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="tabla-articulos"></tbody>
+        </table>
+    </div>
+
+    <!-- Modal de confirmación personalizado -->
+    <div class="modal-confirm" id="modalConfirm">
+        <div class="modal-content">
+            <p id="textoConfirmacion">¿Deseás eliminar este artículo?</p>
+            <div class="modal-buttons">
+                <button id="confirmYes" class="btn btn-danger btn-sm">Sí</button>
+                <button id="confirmNo" class="btn btn-secondary btn-sm">No</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal detalles pedido -->
+    <div id="modalDetallePedido">
+        <div class="modal-content">
+            <button id="cerrarDetallePedido" aria-label="Cerrar modal">&times;</button>
+            <h4>Detalle del pedido</h4>
+            <ul id="detallePedidoLista">
+            <!-- Aquí los items -->
+            </ul>
+        </div>
+    </div>
+    
+
+
+
+<footer>
+    © 2025 Gestión de Artículos. Todos los derechos reservados.
+</footer>
+
+
+<script src="js/app.js"></script>
+</body>
+</html>
